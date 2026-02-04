@@ -26,7 +26,7 @@
     </nav>
 
     <section class="hero">
-        <iframe id="hero-video" src="https://player.vimeo.com/video/1161656062?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0&autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="cine-reel"></iframe>
+        <iframe id="hero-video" src="https://player.vimeo.com/video/1161656062?autoplay=1&loop=1&muted=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="cine-reel"></iframe>
         <div class="hero-content">
             <h1 class="hero-title">We champion your vision.</h1>
             <p class="hero-subtitle">Connecting businesses with talented filmmakers to produce high-quality content</p>
@@ -93,17 +93,43 @@
     </footer>
 
     <script>
-        var iframe = document.getElementById('hero-video');
-        var player = new Vimeo.Player(iframe);
+        // Wait for page to load and Vimeo API to be available
+        window.addEventListener('load', function() {
+            // Check if Vimeo API is loaded
+            if (typeof Vimeo === 'undefined') {
+                console.error('Vimeo Player API not loaded');
+                return;
+            }
 
-        player.setMuted(true).then(function() {
-            player.setLoop(true);
-            player.play();
-        });
+            var iframe = document.getElementById('hero-video');
+            if (!iframe) {
+                console.error('Hero video iframe not found');
+                return;
+            }
 
-        player.on('ended', function() {
-            player.setCurrentTime(0);
-            player.play();
+            var player = new Vimeo.Player(iframe);
+
+            // Set up the player
+            player.ready().then(function() {
+                // Mute and loop the video
+                player.setMuted(true).then(function() {
+                    player.setLoop(true).then(function() {
+                        // Try to play
+                        player.play().catch(function(error) {
+                            console.log('Autoplay prevented:', error);
+                            // If autoplay fails, at least ensure it's ready
+                        });
+                    });
+                });
+            }).catch(function(error) {
+                console.error('Player ready error:', error);
+            });
+
+            // Handle video end to restart
+            player.on('ended', function() {
+                player.setCurrentTime(0);
+                player.play();
+            });
         });
     </script>
 </body>
