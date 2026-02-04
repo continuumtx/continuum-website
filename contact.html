@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Continuum Creative</title>
+    <meta name="description" content="Contact Continuum Creative to discuss your next commercial, branded film, or creative project. Book a consultation today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="nav-container">
+            <div class="logo"><img src="newlogo.png" alt="Continuum logo" class="site-logo"><span class="logo-accent">Continuum</span></div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <!-- nav CTA removed per request -->
+            </ul>
+        </div>
+    </nav>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <h1>Contact Us</h1>
+                    <p>Interested in working together? Fill out some info and we will be in touch shortly. We can't wait to hear from you!</p>
+                    <div class="contact-image">
+                        <img src="Celew3.jpeg" alt="Contact Continuum Creative" class="contact-photo">
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label>Name (required)</label>
+                            <div class="name-fields">
+                                <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                                <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email (required)</label>
+                            <input type="email" name="email" id="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message (required)</label>
+                            <textarea name="message" id="message" rows="6" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <input type="hidden" name="time" id="time">
+                        <button type="submit" class="submit-button" id="submitBtn">SEND</button>
+                        <p id="formStatus" class="form-status"></p>
+                    </form>
+                </div>
+
+                <script>
+                    // Initialize EmailJS - replace YOUR_PUBLIC_KEY with your actual public key
+                    emailjs.init("tx-IfdvlVHWIyNuOt");
+
+                    document.getElementById('contactForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var btn = document.getElementById('submitBtn');
+                        var status = document.getElementById('formStatus');
+
+                        btn.disabled = true;
+                        btn.textContent = 'SENDING...';
+                        status.textContent = '';
+                        status.className = 'form-status';
+
+                        // Set the current time
+                        document.getElementById('time').value = new Date().toLocaleString();
+
+                        // Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with your actual EmailJS IDs
+                        emailjs.sendForm('continuum_service', 'template_qct8ate', this)
+                            .then(function() {
+                                status.textContent = 'Message sent successfully!';
+                                status.classList.add('form-status-success');
+                                document.getElementById('contactForm').reset();
+                                btn.disabled = false;
+                                btn.textContent = 'SEND';
+                            }, function(error) {
+                                status.textContent = 'Something went wrong. Please try again.';
+                                status.classList.add('form-status-error');
+                                btn.disabled = false;
+                                btn.textContent = 'SEND';
+                            });
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Continuum Creative. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

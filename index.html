@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuum Creative - Home</title>
+    <meta name="description" content="Continuum Creative — premium media production connecting businesses with talented filmmakers to create commercials, branded content, and films.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://player.vimeo.com/api/player.js"></script>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="nav-container">
+            <div class="logo"><img src="newlogo.png" alt="Continuum logo" class="site-logo"><span class="logo-accent">Continuum</span></div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <!-- nav CTA removed per request -->
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <iframe id="hero-video" src="https://player.vimeo.com/video/1161656062?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="cine-reel"></iframe>
+        <div class="hero-content">
+            <h1 class="hero-title">We champion your vision.</h1>
+            <p class="hero-subtitle">Connecting businesses with talented filmmakers to produce high-quality content</p>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <section class="intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2>Premium Media Production</h2>
+                <p>It all begins with an idea. Maybe you want to launch a business. Maybe you want to turn a hobby into something more. Or maybe you have a creative project to share with the world. Whatever it is, the way you tell your story online can make all the difference.</p>
+                <p>At Continuum, we specialize in everything from commercials to branded storytelling, bringing your vision to life through exceptional filmmaking.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="image-showcase">
+        <div class="collage-grid">
+            <div class="collage-item collage-tall">
+                <img src="HOMEPAGE 4.jpg" alt="Homepage photo 4" class="collage-image" style="object-position: 44% center">
+            </div>
+            <div class="collage-item collage-top-mid">
+                <img src="HOMEPAGE 1.png" alt="Homepage photo 1" class="collage-image" style="object-position: center 60%">
+            </div>
+            <div class="collage-item collage-top-right">
+                <img src="HOMEPAGE 3.webp" alt="Homepage photo 3" class="collage-image">
+            </div>
+            <div class="collage-item collage-bot-mid">
+                <img src="HOMEPAGE 2.JPG" alt="Homepage photo 2" class="collage-image" style="object-position: center 40%">
+            </div>
+            <div class="collage-item collage-bot-right">
+                <img src="HOMEPAGE 5.jpg" alt="Homepage photo 5" class="collage-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="Commercial production.png" alt="Commercial production" class="feature-image">
+                    <h3>Commercial Production</h3>
+                    <p>High-impact commercials that capture attention and drive results.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="Branded content.png" alt="Branded content" class="feature-image">
+                    <h3>Branded Content</h3>
+                    <p>Authentic storytelling that resonates with your audience.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="Home1.jpg" alt="Creative collaboration" class="feature-image">
+                    <h3>Creative Collaboration</h3>
+                    <p>Working with talented local filmmakers to bring your vision to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Continuum Creative. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        var iframe = document.getElementById('hero-video');
+        var player = new Vimeo.Player(iframe);
+
+        player.setMuted(true).then(function() {
+            player.setLoop(true);
+            player.play();
+        });
+
+        player.on('ended', function() {
+            player.setCurrentTime(0);
+            player.play();
+        });
+    </script>
+</body>
+</html>
+
